@@ -1,28 +1,18 @@
-import { Container, Nav } from 'react-bootstrap';
-import { NavLink, Outlet } from 'react-router-dom';
-
-const navItems = [
-  { href: '/', text: 'Фільми' },
-  { href: '/movie', text: 'Пошук' },
-];
+import AppBar from 'components/AppBar/AppBar';
+import { Container } from 'react-bootstrap';
+import { Outlet } from 'react-router-dom';
 
 export default function Layout() {
   return (
-    <Container>
+    <>
       <header>
-        <Nav variant="tabs">
-          {navItems.map(({ href, text }) => (
-            <Nav.Item key={href}>
-              <Nav.Link as={NavLink} to={href}>
-                {text}
-              </Nav.Link>
-            </Nav.Item>
-          ))}
-        </Nav>
+        <AppBar />
       </header>
       <main>
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </main>
-    </Container>
+    </>
   );
 }

@@ -5,7 +5,7 @@ import { Col, Row } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
 import { getSearchMovies } from 'services/themoviedb.services';
 
-export default function Movies() {
+export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [moviesList, setMoviesList] = useState('');
 

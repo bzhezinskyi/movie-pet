@@ -9,7 +9,16 @@ export default function MovieCard({ movie }) {
   );
   const relisDay = `${data.getDate()}.${data.getDay()}.${data.getFullYear()}`;
 
+  const voteAverage = movie.vote_average.toFixed(1);
+  const voteAverageTxtColor =
+    voteAverage >= 7.0 || voteAverage < 4.0 ? '' : 'dark';
+  const voteAverageBgColor =
+    (voteAverage >= 7.0 && 'success') ||
+    (voteAverage >= 5.0 && 'warning') ||
+    (voteAverage < 5.0 && 'danger');
+
   return (
+    // bg="dark" text="light"
     <Card>
       <Link
         state={{ from: location }}
@@ -20,23 +29,15 @@ export default function MovieCard({ movie }) {
           variant="top"
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
         />
-        <Card.Body style={{ height: '8rem' }}>
+        <Card.Body style={{ minHeight: '6rem' }}>
           <Card.Title>{movie.title ? movie.title : movie.name}</Card.Title>
-          <Card.Text>
-            <>
-              <Badge
-                className="me-5"
-                bg={
-                  movie.vote_average.toFixed(1) >= 7.0 ? 'success' : 'warning'
-                }
-                text={movie.vote_average.toFixed(1) >= 7.0 ? '' : 'dark'}
-              >
-                {movie.vote_average.toFixed(1)}
-              </Badge>
-              {relisDay}
-            </>
-          </Card.Text>
         </Card.Body>
+        <Card.Footer className="d-flex justify-content-between">
+          <Badge bg={voteAverageBgColor} text={voteAverageTxtColor}>
+            {voteAverage}
+          </Badge>
+          <Badge bg="secondary">{relisDay}</Badge>
+        </Card.Footer>
       </Link>
     </Card>
   );

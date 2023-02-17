@@ -4,7 +4,7 @@ import { Button, ButtonGroup, Col, Row } from 'react-bootstrap';
 import MovieCard from 'components/MovieCard/MovieCard';
 import { useSearchParams } from 'react-router-dom';
 
-export default function HomePage() {
+export default function TrandingPage() {
   const [trandingList, setTrandingList] = useState();
   const [searchParams, setSearchParams] = useSearchParams({
     timeWindow: 'day',
