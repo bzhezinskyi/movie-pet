@@ -7,7 +7,7 @@ import TrendingFilter from 'components/TrendingFilter/TrendingFilter';
 
 export default function TrandingPage() {
   const [trandingList, setTrandingList] = useState();
-  const [searchParams, setSearchParams] = useSearchParams({
+  const [searchParams] = useSearchParams({
     timeWindow: 'day',
     mediaType: 'movie',
   });
