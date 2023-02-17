@@ -1,8 +1,9 @@
 import { getTrending } from 'services/themoviedb.services';
 import { useState, useEffect } from 'react';
-import { Button, ButtonGroup, Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import MovieCard from 'components/MovieCard/MovieCard';
 import { useSearchParams } from 'react-router-dom';
+import TrendingFilter from 'components/TrendingFilter/TrendingFilter';
 
 export default function TrandingPage() {
   const [trandingList, setTrandingList] = useState();
@@ -21,25 +22,6 @@ export default function TrandingPage() {
     };
     createTrandingList();
   }, [searchParams]);
-  const handleSearchParams = ({ type, value }) => {
-    switch (type) {
-      case 'mediaType':
-        setSearchParams({
-          timeWindow: searchParams.get('timeWindow'),
-          mediaType: value,
-        });
-        break;
-      case 'timeWindow':
-        setSearchParams({
-          mediaType: searchParams.get('mediaType'),
-          timeWindow: value,
-        });
-        break;
-
-      default:
-        break;
-    }
-  };
 
   if (!trandingList) {
     return;
@@ -48,69 +30,7 @@ export default function TrandingPage() {
   return (
     <>
       <h1>У тренді</h1>
-      <ButtonGroup>
-        <Button
-          variant={
-            searchParams.get('timeWindow') === 'day'
-              ? 'primary'
-              : 'outline-primary'
-          }
-          onClick={() =>
-            handleSearchParams({ type: 'timeWindow', value: 'day' })
-          }
-        >
-          Сьогодні
-        </Button>
-        <Button
-          variant={
-            searchParams.get('timeWindow') === 'week'
-              ? 'primary'
-              : 'outline-primary'
-          }
-          onClick={() =>
-            handleSearchParams({ type: 'timeWindow', value: 'week' })
-          }
-        >
-          Цього тижня
-        </Button>
-      </ButtonGroup>
-      <ButtonGroup>
-        <Button
-          variant={
-            searchParams.get('mediaType') === 'movie'
-              ? 'primary'
-              : 'outline-primary'
-          }
-          onClick={() =>
-            handleSearchParams({ type: 'mediaType', value: 'movie' })
-          }
-        >
-          Фільми
-        </Button>
-        <Button
-          variant={
-            searchParams.get('mediaType') === 'tv'
-              ? 'primary'
-              : 'outline-primary'
-          }
-          onClick={() => handleSearchParams({ type: 'mediaType', value: 'tv' })}
-        >
-          Суріали
-        </Button>
-        <Button
-          variant={
-            searchParams.get('mediaType') === 'all'
-              ? 'primary'
-              : 'outline-primary'
-          }
-          onClick={() =>
-            handleSearchParams({ type: 'mediaType', value: 'all' })
-          }
-        >
-          Все
-        </Button>
-      </ButtonGroup>
-
+      <TrendingFilter />
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
         {trandingList.map(movie => {
           return (
