@@ -41,15 +41,12 @@ export default function AppBar() {
           <Nav>
             <ButtonGroup aria-label="Basic example">
               <Button
-                variant={thema === 'dark' ? 'light' : 'outline-light'}
+                variant="outline-light"
                 onClick={() => handleThema('light')}
               >
                 light
               </Button>
-              <Button
-                variant={thema === 'dark' ? 'outline-light' : 'light'}
-                onClick={() => handleThema('dark')}
-              >
+              <Button variant="light" onClick={() => handleThema('dark')}>
                 dark
               </Button>
             </ButtonGroup>

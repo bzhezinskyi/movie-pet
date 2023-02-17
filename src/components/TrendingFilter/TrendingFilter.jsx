@@ -7,7 +7,7 @@ export default function TrendingFilter() {
   const thema = useSelector(selectThema);
   const btnColor =
     thema === 'dark'
-      ? { active: 'dark', secondary: 'outline-dark' }
+      ? { active: 'light', secondary: 'outline-light' }
       : { active: 'primary', secondary: 'outline-primary' };
 
   const [searchParams, setSearchParams] = useSearchParams({

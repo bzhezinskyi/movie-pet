@@ -1,8 +1,11 @@
 import { Badge, Card } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { selectThema } from 'redux/thema/thema.selector';
 
 export default function MovieCard({ movie }) {
   const location = useLocation();
+  const thema = useSelector(selectThema);
 
   const data = new Date(
     movie.release_date ? movie.release_date : movie.first_air_date
@@ -19,7 +22,10 @@ export default function MovieCard({ movie }) {
 
   return (
     // bg="dark" text="light"
-    <Card>
+    <Card
+      bg={thema === 'dark' ? 'dark' : ''}
+      text={thema === 'dark' ? 'light' : ''}
+    >
       <Link
         state={{ from: location }}
         to={`/${movie.media_type}/${movie.id}`}

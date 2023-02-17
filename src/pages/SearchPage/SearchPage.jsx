@@ -1,5 +1,5 @@
 import MovieCard from 'components/MovieCard/MovieCard';
-import MoviesSearchForm from 'pages/Movies/MoviesSearchForm/MoviesSearchForm';
+import SearchForm from 'components/SearchForm/SearchForm';
 import { useState, useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
@@ -28,7 +28,7 @@ export default function SearchPage() {
 
   return (
     <>
-      <MoviesSearchForm
+      <SearchForm
         onSubmitForm={createSearchParams}
         searchParams={searchParams.get('query') ?? ''}
       />
